@@ -30,7 +30,7 @@ For example:
 | #Low     | Reduce cookie size                                                               | Every cookie is sent with each HTTP request. Reduce the size of the data in cookies, and enable HTTP/2 or above to compress headers.                                                                                                                                                                              |
 |          | Investigate using a Content Delivery Network (CDN)                               | A CDN will improve site performance by using a network of servers to deliver resources to users. The user will get delivered resources from the server that is located nearest to the user. A CDN is well-suited to handling heavy traffic and traffic spikes. Optimise your cache strategy to work with the CDN. |
 |          | Keep JSON payloads small                                                         | Avoid adding too much data to JSON objects, as parsing them can be slow.                                                                                                                                                                                                                                          |
-|          | Investigate using [WebSockets][]                                                 | Consider using WebSockets rather than [XMLHttpRequest][]for tasks involving streaming from the server - an HTTP request packet has 1,684 bytes of overhead, compared to 8 bytes for a WebSocket packet.                                                                                                           |
+|          | Investigate using [WebSockets][]                                                 | Consider using WebSockets rather than [fetch][] for tasks involving streaming from the server - an HTTP request packet has 1,684 bytes of overhead, compared to 8 bytes for a WebSocket packet.                                                                                                                   |
 |          | Investigate using a service worker                                               | Consider [using a service worker][] for fine grain cache control of critical assets on users’ machines instead of transferring them over the network.                                                                                                                                                             |
 
 ## Automate optimisation
@@ -128,7 +128,7 @@ The Service Manual has more suggestions about [how you can test frontend perform
 [FOUT, FOIT and FOFT]: https://css-tricks.com/fout-foit-foft/
 [AJAX]: https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started
 [WebSockets]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
-[XMLHttpRequest]: https://xhr.spec.whatwg.org/
+[fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/
 [Webpack]: https://webpack.js.org/
 [Parcel]: https://parceljs.org/
 [Rollup]: https://rollupjs.org/guide/en/
