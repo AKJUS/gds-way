@@ -12,6 +12,8 @@ Use [trusted publishing] if the registry that you are publishing the package to 
 
 Trusted publishing uses OpenID Connect standard (OIDC) to authenticate between your CI system and the package registry, removing the need to store authentication tokens in your environment.
 
+Once trusted publishing is working, disable other methods of authentication in your registry.
+
 ## Limit the scope of any tokens
 
 If it is not possible to publish your package using trusted publishing, make sure that any authentication tokens used to authenticate with the registry are:
