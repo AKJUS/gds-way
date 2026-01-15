@@ -19,7 +19,8 @@ If it is not possible to publish your package using trusted publishing, make sur
 - short-lived
 - least-privileged
 - auditable
-- revocable and rotatable
+- revocable
+- rotatable
 
 ## Avoid making it possible to publish from other parts of your workflow
 
@@ -27,7 +28,7 @@ Restrict access to the tokens to the parts of your CI/CD pipeline that should be
 
 ### Consider using environments
 
-If you publishing using GitHub Actions, consider using an [environment] for your publishing workflow, which allows you to introduce additional restrictions. For example, you can restrict releasing from specific branches or require an approval from another user.
+If you are publishing using GitHub Actions, consider using an [environment] for your publishing workflow, which allows you to introduce additional restrictions. For example, you can restrict releasing from specific branches or require an approval from another user.
 
 If you are publishing using trusted publishing, you can usually specify an environment when setting up the relationship with GitHub Actions in your registry account.
 
