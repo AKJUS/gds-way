@@ -1,0 +1,38 @@
+---
+title: Publishing packages
+last_reviewed_on: 2026-01-15
+review_in: 12 months
+---
+
+# <%= current_page.data.title %>
+
+## Use trusted publishing where possible
+
+Use [trusted publishing] if the registry that you are publishing the package to supports it.
+
+Trusted publishing uses OpenID Connect standard (OIDC) to authenticate between your CI system and the package registry, removing the need to store authentication tokens in your environment.
+
+## Limit the scope of any tokens
+
+If it is not possible to publish your package using trusted publishing, make sure that any authentication tokens used to authenticate with the registry are:
+
+- short-lived
+- least-privileged
+- auditable
+- revocable and rotatable
+
+## Avoid making it possible to publish from other parts of your workflow
+
+Restrict access to the tokens to the parts of your CI/CD pipeline that should be able to publish packages.
+
+### Consider using environments
+
+If you publishing using GitHub Actions, consider using an [environment] for your publishing workflow, which allows you to introduce additional restrictions. For example, you can restrict releasing from specific branches or require an approval from another user.
+
+If you are publishing using trusted publishing, you can usually specify an environment when setting up the relationship with GitHub Actions in your registry account.
+
+If you are publishing using authentication tokens, consider defining the tokens as [environment secrets] rather than secrets that are available in all Actions runs. Note that it is not possible to restrict organisation-level secrets to a specific environment.
+
+[trusted publishing]: https://repos.openssf.org/trusted-publishers-for-all-package-repositories.html
+[environment]: https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments
+[environment secrets]: https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments#environment-secrets
