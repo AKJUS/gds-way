@@ -85,9 +85,13 @@ prefixed with your IAM username, which is usually your @digital email address. O
 
 1. Click Next.
 
-    If you get the "You need permissions" error, then it's probably because of an invalid "MFA device name". In this case, select "Previous" and ensure you follow the instructions above for completing the field.
+    If you get this error: "You need permissions ... because no identity-based policy allows the iam:CreateVirtualMFADevice action", then that's probably because of an invalid "MFA device name". In this case, select "Previous" and ensure you follow the instructions above for completing the field.
 
-    !["You need permissions" error when adding MFA](../images/working-with-aws-accounts/mfa-permissions-error.png)
+    !["You need permissions ... because no identity-based policy allows the iam:CreateVirtualMFADevice action" error when adding MFA](../images/working-with-aws-accounts/mfa-permissions-error-policy.png)
+
+    Or if you get this error: "You need permissions ... please ensure you are authenticated with an MFA device" then this can be due to a limitation on setting up further MFA device in the same session as setting up the first MFA device. The solution is to log out, log-in again, therefore using the first MFA device, and now you can setup further MFA devices.
+
+    !["You need permissions ... please ensure you are authenticated with an MFA device" error when adding MFA](../images/working-with-aws-accounts/mfa-permissions-error-auth-with-mfa.png)
 
 1. Now on the "Set up device" page:
 
