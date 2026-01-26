@@ -7,10 +7,10 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
+    addressable (2.8.8)
+      public_suffix (>= 2.0.2, < 8.0)
     afm (1.0.0)
-    async (2.34.0)
+    async (2.35.2)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
@@ -60,9 +60,9 @@ GEM
     execjs (2.10.0)
     fast_blank (1.0.1)
     fastimage (2.4.0)
-    ffi (1.17.2-arm64-darwin)
-    ffi (1.17.2-x86_64-darwin)
-    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x86_64-darwin)
+    ffi (1.17.3-x86_64-linux-gnu)
     fiber-annotation (0.2.0)
     fiber-local (1.1.0)
       fiber-storage
@@ -105,7 +105,7 @@ GEM
       concurrent-ruby (~> 1.0)
     hashery (2.1.2)
     hashie (3.6.0)
-    html-proofer (5.1.1)
+    html-proofer (5.2.0)
       addressable (~> 2.3)
       async (~> 2.1)
       benchmark (~> 0.5)
@@ -119,7 +119,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-event (1.14.2)
-    json (2.16.0)
+    json (2.18.0)
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     listen (3.9.0)
@@ -184,11 +184,11 @@ GEM
     minitest (5.25.5)
     multi_json (1.17.0)
     mutex_m (0.3.0)
-    nokogiri (1.18.10-arm64-darwin)
+    nokogiri (1.19.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-darwin)
+    nokogiri (1.19.0-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-linux-gnu)
+    nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
     openapi3_parser (0.9.2)
       commonmarker (~> 0.17)
@@ -199,13 +199,13 @@ GEM
     padrino-support (0.15.3)
     parallel (1.27.0)
     parslet (2.0.0)
-    pdf-reader (2.15.0)
+    pdf-reader (2.15.1)
       Ascii85 (>= 1.0, < 3.0, != 2.0.0)
       afm (>= 0.2.1, < 2)
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    public_suffix (6.0.2)
+    public_suffix (7.0.2)
     racc (1.8.1)
     rack (2.2.20)
     rack-livereload (0.3.17)
@@ -253,7 +253,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     webrick (1.9.1)
     yell (2.2.2)
-    zeitwerk (2.7.3)
+    zeitwerk (2.7.4)
 
 PLATFORMS
   arm64-darwin-21
@@ -264,7 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   govuk_tech_docs
-  html-proofer (~> 5.1.1)
+  html-proofer (~> 5.2.0)
   tzinfo-data
   wdm (~> 0.1.0)
 
