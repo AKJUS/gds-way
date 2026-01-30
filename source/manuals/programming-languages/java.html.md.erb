@@ -156,13 +156,15 @@ As an alternative to comments, commit messages can be a good place for describin
 
 ## Testing
 
-Use JUnit for unit tests. It can also be used for many integration tests.
+Use [JUnit](https://junit.org/) for unit tests. It can also be used for many integration tests.
 
-The latest [JUnit 5](https://junit.org/junit5/) is not a drop-in replacement for [JUnit 4](https://junit.org/junit4/). The [JUnit Vintage test engine](https://junit.org/junit5/docs/current/user-guide/#migrating-from-junit4) makes it possible to run JUnit 4 tests within JUnit 5, though not all JUnit 4 features are supported. If you use lots of JUnit 4 rules and alternative runners, or rely on other testing libraries that integrate with JUnit 4, you will have to make more changes. Teams within GDS have found it typically takes a few days to upgrade a project from JUnit 4 to JUnit 5 (keeping the test classes as JUnit 4 where possible). JUnit 4 continues to be maintained.
+While JUnit 6 is a relatively small upgrade from JUnit 5, neither are drop-in replacements for [JUnit 4](https://junit.org/junit4/). The [JUnit Vintage test engine](https://docs.junit.org/current/migrating-from-junit4.html) makes it possible to run JUnit 4 tests within JUnit 5/6, though not all JUnit 4 features are supported. If you use lots of JUnit 4 rules and alternative runners, or rely on other testing libraries that integrate with JUnit 4, you will have to make more changes.
 
-When you upgrade from JUnit 4 to JUnit 5, have a strategy for gradually making more and more of your test classes use JUnit 5. A good rule is to write all new test classes in JUnit 5 and to migrate over existing ones when you need to make major changes to them (generally it’s best to do the migration in a separate pull request first before making other changes).
+Teams within GDS have found it typically takes a few days to upgrade a project from JUnit 4 to JUnit 5 (keeping the test classes as JUnit 4 where possible). Upgrading from JUnit 5 to JUnit 6 should be almost trivial in most cases. JUnit 4 continues to be maintained.
 
-For new projects, use JUnit 5 unless you have a reason not to.
+When you upgrade from JUnit 4 to JUnit 5/6, have a strategy for gradually moving more and more of your test classes away from JUnit 4. A good rule is to write all new test classes in JUnit 5/6 and to migrate over existing ones when you need to make major changes to them (generally it’s best to do the migration in a separate pull request first before making other changes).
+
+For new projects, use JUnit 5/6. If you have a free choice, use JUnit 6. If it’s easier to use JUnit 5 (for example, if JUnit 5 comes bundled with your framework or if your tooling does not fully support JUnit 6), use JUnit 5.
 
 Use [Mockito](https://site.mockito.org/) for mocking. If you’re still using an older version, upgrading should be fairly straightforward: Mockito 3 contains no breaking changes, Mockito 4 only removes deprecated APIs and Mockito 5 mainly changes internals.
 
