@@ -1,6 +1,6 @@
 ---
 title: Java style guide
-last_reviewed_on: 2025-07-11
+last_reviewed_on: 2026-01-16
 review_in: 6 months
 owner_slack: '#java'
 ---
@@ -11,7 +11,7 @@ The purpose of this style guide is to provide some conventions for working on Ja
 
 The [Google Java style guide](https://google.github.io/styleguide/javaguide.html) is a good starting point. The old [Sun/Oracle Java style guide](https://www.oracle.com/java/technologies/cc-java-programming-language.html) is still largely relevant but it has not been updated since 1999 and does not reflect recent changes to the language.
 
-The more far-reaching _[Java for Small Teams](https://ncrcoe.gitbooks.io/java-for-small-teams/content/)_ ebook can be read online at no cost. While not free, _[Effective Java](https://www.pearson.com/en-gb/subject-catalog/p/effective-java/P200000000138/9780134685991/)_ by Joshua Bloch (Addison-Wesley, 2017) is also an excellent resource. The GDS Library has physical copies of the book or you can [buy a copy using the Learning and Development budget](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/learning-and-development/apply-to-use-the-learning-and-development-budget).
+The more far-reaching _[Java for Small Teams](https://ncrcoe.gitbooks.io/java-for-small-teams/content/)_ ebook can be read online at no cost. While not free, _[Effective Java](https://www.pearson.com/en-gb/subject-catalog/p/effective-java/P200000000138/9780134685991/)_ by Joshua Bloch (Addison-Wesley, 2017) is also an excellent resource. The GDS Library has physical copies of the book.
 
 While the above resources are good guides, they may conflict with either each other or your team’s established practices. We favour consistency across our code, so make sure that you have the agreement of your team when considering using a new or different method or paradigm to those currently in use.
 
@@ -69,7 +69,7 @@ assertThat(actual, is(expected));
 
 Similarly, `Math.max(…)`, `Math.PI` and `ChronoUnit.DAYS` could be statically imported because their names make sense on their own. However, `LocalDate.of(…)` should not be statically imported because the type it comes from is crucial for comprehension.
 
-The IntelliJ ‘Optimize Imports’ (Ctrl+Option+O) command (in the Code menu) sorts imports and removes any that are unused. Before committing, you can select all the changed classes (for example, in the [changes view](https://www.jetbrains.com/help/idea/managing-changelists.html) of the commit [tool window](https://www.jetbrains.com/help/idea/tool-windows.html) or the modified files pane of the [commit dialogue](https://www.jetbrains.com/help/idea/commit-changes-dialog.html)) and then use this command to fix the imports for just the classes you modified.
+The IntelliJ ‘Optimize Imports’ (Ctrl+Option+O) command (in the Code menu) sorts imports and removes any that are unused. Before committing, you can select all the changed classes (for example, in the [changes view](https://www.jetbrains.com/help/idea/managing-changelists.html) of the commit [tool window](https://www.jetbrains.com/help/idea/tool-windows.html)) and then use this command to fix the imports for just the classes you modified.
 
 ## Optionals
 
@@ -144,7 +144,7 @@ Make sure any external library you use is appropriate for your purposes and avoi
 ## Comments
 Agree with your team to what extent you permit comments in your code. Some teams look more favourably on method-level and class-level Javadoc describing the context and responsibility of code, rather than inline comments.
 
-It’s often possible to [make code more readable so it does not need comments](https://ncrcoe.gitbooks.io/java-for-small-teams/content/style/20_prefer_readable_code_to_comments.html). The book _[Clean Code](https://www.pearson.com/en-gb/subject-catalog/p/clean-code-a-handbook-of-agile-software-craftsmanship/P200000009044/9780132350884)_ by Robert C Martin (Pearson, 2008) has some advice on how to do this.
+It’s often possible to [make code more readable so it does not need comments](https://ncrcoe.gitbooks.io/java-for-small-teams/content/style/20_prefer_readable_code_to_comments.html). The book _[Clean Code](https://www.pearson.com/en-gb/subject-catalog/p/clean-code-a-handbook-of-agile-software-craftsmanship-2nd-edition/P200000013239/9780135398579)_ by Robert C Martin (Pearson, 2008) has some advice on how to do this.
 
 Comments rarely need to describe _what_ some code is doing or _how_ it’s doing it. Comments explaining _why_ the code is doing something, particularly if it’s non-obvious or requires external contextual knowledge, may be helpful.
 
@@ -156,23 +156,27 @@ As an alternative to comments, commit messages can be a good place for describin
 
 ## Testing
 
-Use JUnit for unit tests. It can also be used for many integration tests.
+Use [JUnit](https://junit.org/) for unit tests. It can also be used for many integration tests.
 
-The latest [JUnit 5](https://junit.org/junit5/) is not a drop-in replacement for [JUnit 4](https://junit.org/junit4/). The [JUnit Vintage test engine](https://junit.org/junit5/docs/current/user-guide/#migrating-from-junit4) makes it possible to run JUnit 4 tests within JUnit 5, though not all JUnit 4 features are supported. If you use lots of JUnit 4 rules and alternative runners, or rely on other testing libraries that integrate with JUnit 4, you will have to make more changes. Teams within GDS have found it typically takes a few days to upgrade a project from JUnit 4 to JUnit 5 (keeping the test classes as JUnit 4 where possible). JUnit 4 continues to be maintained.
+While JUnit 6 is a relatively small upgrade from JUnit 5, neither are drop-in replacements for [JUnit 4](https://junit.org/junit4/). The [JUnit Vintage test engine](https://docs.junit.org/current/migrating-from-junit4.html) makes it possible to run JUnit 4 tests within JUnit 5/6, though not all JUnit 4 features are supported. If you use lots of JUnit 4 rules and alternative runners, or rely on other testing libraries that integrate with JUnit 4, you will have to make more changes.
 
-When you upgrade from JUnit 4 to JUnit 5, have a strategy for gradually making more and more of your test classes use JUnit 5. A good rule is to write all new test classes in JUnit 5 and to migrate over existing ones when you need to make major changes to them (generally it’s best to do the migration in a separate pull request first before making other changes).
+Teams within GDS have found it typically takes a few days to upgrade a project from JUnit 4 to JUnit 5 (keeping the test classes as JUnit 4 where possible). Upgrading from JUnit 5 to JUnit 6 should be almost trivial in most cases. JUnit 4 continues to be maintained.
 
-For new projects, use JUnit 5 unless you have a reason not to.
+When you upgrade from JUnit 4 to JUnit 5/6, have a strategy for gradually moving more and more of your test classes away from JUnit 4. A good rule is to write all new test classes in JUnit 5/6 and to migrate over existing ones when you need to make major changes to them (generally it’s best to do the migration in a separate pull request first before making other changes).
+
+For new projects, use JUnit 5/6. If you have a free choice, use JUnit 6. If it’s easier to use JUnit 5 (for example, if JUnit 5 comes bundled with your framework or if your tooling does not fully support JUnit 6), use JUnit 5.
 
 Use [Mockito](https://site.mockito.org/) for mocking. If you’re still using an older version, upgrading should be fairly straightforward: Mockito 3 contains no breaking changes, Mockito 4 only removes deprecated APIs and Mockito 5 mainly changes internals.
 
 ## Code checking
 
-We encourage the use of static analysis. Static analysis tools for Java include [CodeQL](https://codeql.github.com/), [SonarQube Server](https://www.sonarsource.com/products/sonarqube/), [Codacy](https://www.codacy.com/) and [CheckStyle](https://checkstyle.sourceforge.io/). However, be aware that such tools can detect an overwhelming number of problems if applied to an existing project, which tends to result in their checks being ignored.
+We encourage the use of static analysis. Static analysis tools for Java include [CodeQL](https://codeql.github.com/), [SonarQube Server](https://www.sonarsource.com/products/sonarqube/), [Codacy](https://www.codacy.com/) and [CheckStyle](https://checkstyle.sourceforge.io/).
+
+However, be aware that such tools can detect an overwhelming number of problems if applied to an existing project, which tends to result in their checks being ignored. If you’re starting a new project, use static analysis from the beginning.
 
 If possible, configure your static analysis tools using configuration files and keep these in your project repositories. This makes your settings more portable and makes it easier to perform the same checks in different places (for example, in a cloud service and on your own computer).
 
-Some cloud-based static analysis tools, including Codacy, can work directly with GitHub repositories. Only grant a tool access to your repositories if it has been approved by an information assurance review. The Digital Identity programme has approval to use [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/) on public repos.
+Some cloud-based static analysis tools, including Codacy, can work directly with GitHub repositories. Only grant a tool access to your repositories if it has been approved by an information assurance review. The Digital Identity programme has approval to use [SonarQube Cloud](https://www.sonarsource.com/products/sonarqube/cloud/) on public repos.
 
 Try to minimise compiler warnings. If you cannot remove a warning, use an appropriate annotation to suppress it, preferably with a comment explaining why. For example:
 
@@ -193,11 +197,11 @@ Teams should agree their own rules for how to approve new dependencies and where
 
 Try to keep up to date with the latest versions of your external dependencies. Older dependencies often contain security vulnerabilities. If you wait to upgrade your dependencies, you may find you have to make large version jumps to lots of dependencies at once, which can be painful. Frequent, smaller updates are almost always preferable.
 
-[Dependabot](https://docs.github.com/en/code-security/dependabot) (which is part of GitHub) can automatically open pull requests to upgrade your libraries and other dependencies. Be aware that not all dependency upgrades are backwards compatible. Major version upgrades are more likely to cause problems than minor upgrades. Dependabot provides compatibility scores and links to release notes, which can help you make an informed decision. Do not merge a dependency upgrade unless it passes your automated tests. If it’s a major upgrade, monitor for any problems after it’s deployed.
+[Dependabot](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-alerts) (which is part of GitHub) can automatically open pull requests to upgrade your libraries and other dependencies. Be aware that not all dependency upgrades are backwards compatible. Major version upgrades are more likely to cause problems than minor upgrades. Dependabot provides compatibility scores and links to release notes, which can help you make an informed decision. Do not merge a dependency upgrade unless it passes your automated tests. If it’s a major upgrade, monitor for any problems after it’s deployed.
 
 Dependabot makes assumptions about version numbers that not all dependencies follow. This can cause it to open pull requests that update to beta versions, release candidates or even alternative variants of the dependency. Always have a human sense-check each Dependabot pull request before merging.
 
-If you are not ready to upgrade to a particular version of a dependency, tell Dependabot to ignore that version by using a [dependabot.yml](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file) file. A comment in the file explaining why it has been ignored can be useful. Using a dependabot.yml file is preferable to using `@dependabot ignore` commands because it’s much more visible and it’s also easier to tell Dependabot to stop ignoring a version upgrade. 
+If you are not ready to upgrade to a particular version of a dependency, tell Dependabot to ignore that version by using a [dependabot.yml](https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference) file. A comment in the file explaining why it has been ignored can be useful. Using a dependabot.yml file is preferable to using `@dependabot ignore` commands because it’s much more visible and it’s also easier to tell Dependabot to stop ignoring a version upgrade. 
 
 There have been cases of bad actors raising malicious pull requests on repositories that appear to come from Dependabot. Make sure a pull request really comes from Dependabot before merging.
 
@@ -207,6 +211,8 @@ When viewing a Maven POM file, IntelliJ IDEA can warn you if your transitive dep
 
 You can often force a newer version of a transitive dependency to be used by explicitly adding the dependency then adding exclusions to stop other dependencies using it transitively.
 
+If you find a dependency you use is slow to update its dependendencies (your transitive dependencies), consider whether that dependency is still a good fit for your needs.
+
 ## Build tools
 
 You should use either [Gradle](https://gradle.org/) or [Maven](https://maven.apache.org/) as the build tool. Use recent versions if you can. Maven now supports the [Bill of Materials (BOM)](https://www.jvt.me/posts/2021/08/28/java-bom/) concept, which can simplify dependency management (Gradle also supports Maven BOMs).
@@ -215,11 +221,9 @@ You should use either [Gradle](https://gradle.org/) or [Maven](https://maven.apa
 
 The [Dropwizard](https://www.dropwizard.io/) web framework is used widely within GDS.
 
-Dropwizard 3.0.0 and Dropwizard 4.0.0 were released simutaneously in March 2023. They have equivalent functionality but Dropwizard 3 continues to use Java EE and the `javax` package namespace while Dropwizard 4 migrates to [Jakarta EE](https://jakarta.ee/) and the `jakarta` package namespace (Jakarta EE is the successor to Java EE).
+Only the latest Dropwizard 5 is supported beyond 31 January 2026. [Upgrade to Dropwizard 5](https://www.dropwizard.io/en/stable/manual/upgrade-notes/upgrade-notes-5_0_x.html) if you are still using an older version.
 
-[Dropwizard 2 is no longer supported as of 31 January 2024.](https://github.com/dropwizard/dropwizard/discussions/7880) If you are still using Dropwizard 2, [upgrade to Dropwizard 3](https://www.dropwizard.io/en/release-3.0.x/manual/upgrade-notes/upgrade-notes-3_0_x.html) rather than trying to upgrade directly to Dropwizard 4.
-
-If you are using Dropwizard 3, you can consider trying to [upgrade to Dropwizard 4](https://www.dropwizard.io/en/release-4.0.x/manual/upgrade-notes/upgrade-notes-4_0_x.html). You may find you have to upgrade some (but not all) of your other dependencies from versions that use Java EE to versions that use Jakarta EE.
+Dropwizard versions 1 to 3 used Java EE and the `javax` package namespace while Dropwizard 4 and later use Jakarta EE and the `jakarta` package namespace (Dropwizard 3 and 4 otherwise have equivalent functionality).
 
 Dropwizard has built-in support for validating requests with Hibernate Validator. Use [Dropwizard’s validation](https://www.dropwizard.io/en/stable/manual/validation.html) in preference to rolling your own except in cases where Dropwizard’s built-in functionality cannot meet your validation requirements.
 
@@ -241,7 +245,7 @@ In general, upgrading between recent Java versions is a lot easier than it was a
 
 Recent versions of the [Oracle JDK can be used free of charge](https://www.oracle.com/downloads/licenses/no-fee-license.html) for commercial and production purposes under the terms of a bespoke licence. OpenJDK is open source under the [GPLv2 with the Classpath Exception](https://openjdk.org/legal/gplv2+ce.html) but Oracle only provide general-availability [OpenJDK builds](https://jdk.java.net/) for the latest release.
 
-The [Adoptium](https://adoptium.net/) (formerly AdoptOpenJDK) project (part of the [Eclipse Foundation](https://www.eclipse.org/)) provides fully open-source TCK-certified pre-built OpenJDK binaries under the name [Eclipse Temurin](https://projects.eclipse.org/projects/adoptium.temurin). For LTS releases (such as Java 8, 11, 17 and 21), Adoptium have committed to releasing free updates for several years.
+The [Adoptium](https://adoptium.net/) (formerly AdoptOpenJDK) project (part of the [Eclipse Foundation](https://www.eclipse.org/)) provides fully open-source TCK-certified pre-built OpenJDK binaries under the name [Eclipse Temurin](https://projects.eclipse.org/projects/adoptium.temurin). For LTS releases (such as Java 11, 17, 21 and 25), Adoptium have committed to releasing free updates for several years.
 
 In addition, Temurin has benefits such as being available in package repositories, having friendly installers for desktop use, and offering ready-made [Docker images containing OpenJDK](https://hub.docker.com/_/eclipse-temurin). It’s easy to [install Temurin on your computer](https://adoptium.net/en-GB/installation/) for development purposes using [Homebrew](https://brew.sh/) or similar.
 
