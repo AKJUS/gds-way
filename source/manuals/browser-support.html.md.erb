@@ -17,6 +17,26 @@ You may receive reported issues on browsers outside of your normal policy. You s
 - fixing the issue would require disproportionate engineering effort
 - a feature of your service inherently relies on an unsupported feature
 
+## Progressive Enhancement
+
+Use a [progressive enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) approach to deliver different features to different browsers.
+
+### CSS feature queries
+
+Modern browsers support [using CSS feature queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Conditional_rules/Using_feature_queries), which allow you to set conditional styles if a browser supports a given CSS feature.
+
+### Vendor prefixing
+
+Some features may require [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) to work in older browsers. Consider using [autoprefixer](https://github.com/postcss/autoprefixer) and configuring a [browserslist](https://browsersl.ist/) to automate adding vendor prefixes without manually adding them to your stylesheets.
+
+### Javascript feature detection
+
+When writing Javascript, use [feature detection](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection#javascript) to test for any features you rely on that are not widely supported.
+
+### Browser hacks
+
+You can use various [browser hacks](http://browserhacks.com/) to select and target different browsers. These tend to be less readable than the feature detection methods above, so should only be used in rare cases where those methods can’t be used in your target browsers.
+
 ## Testing
 
 You can use [BrowserStack](https://www.browserstack.com/) to test browsers that run on Windows, mobile phones and tablets. [Contact the Engineering Enablement team](https://engineering-enablement.gds-reliability.engineering/support.html) to request an account.
