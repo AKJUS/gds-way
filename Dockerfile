@@ -1,5 +1,4 @@
-# 4.0.5-alpine3.22
-FROM ruby@sha256:d07ce5b3f4dc2246980d6d5bcd1e9e54ea62445b2b531ea1819112c69bf29d36
+FROM ruby:4.0.6-slim@sha256:abd7528c4df35d151e2643d5efb845e442a26e36a4babc6459bee508619137a2
 
 EXPOSE 4567
 EXPOSE 35729
@@ -9,9 +8,8 @@ WORKDIR /usr/src/gems
 COPY ./Gemfile /usr/src/gems
 COPY ./Gemfile.lock /usr/src/gems
 
-RUN apt-get update && apt-get install -y nodejs build-essential curl
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs build-essential curl git ca-certificates && rm -rf /var/lib/apt/lists/*
 
-RUN bundle config set force_ruby_platform true
 RUN bundle install
 RUN bundle check
 
